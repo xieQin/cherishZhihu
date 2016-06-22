@@ -9,9 +9,11 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  TextInput,
   View,
   Image,
   ScrollView,
+  ListView,
   TouchableHighlight,
   DrawerLayoutAndroid,
   ProgressBarAndroid
@@ -20,7 +22,11 @@ import {
 class cherishZhihu extends Component {
   constructor(props) {
     super(props)
-    this.state = { position: 'unknown' }
+    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+    this.state = {
+      position: 'unknown',
+      dataSource: ds.cloneWithRows(['John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie'])
+    }
   }
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
@@ -35,82 +41,22 @@ class cherishZhihu extends Component {
         <ProgressBarAndroid/>
         <ScrollView style={styles.container}>
           <TouchableHighlight
-            onPress={() => console.log('pressed')}
-            style={styles.item}>
-            <Text style={styles.text}>Position: {JSON.stringify(this.state.position)}</Text>
+            onPress={() => console.log('pressed')}>
+            <Text style={styles.item}>Position: {JSON.stringify(this.state.position)}</Text>
           </TouchableHighlight>
-          <Text style={styles.item}>Position: {JSON.stringify(this.state.position)}</Text>
-          <View style={styles.row}>
-            <Image
-              source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
-              style={styles.image}
-            />
-            <View style={styles.text}>
-              <Text style={styles.title}>
-                React Native
-              </Text>
-              <Text style={styles.subtitle}>
-                Build high quality mobile apps using React
-              </Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <Image
-              source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
-              style={styles.image}
-            />
-            <View style={styles.text}>
-              <Text style={styles.title}>
-                React Native
-              </Text>
-              <Text style={styles.subtitle}>
-                Build high quality mobile apps using React
-              </Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <Image
-              source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
-              style={styles.image}
-            />
-            <View style={styles.text}>
-              <Text style={styles.title}>
-                React Native
-              </Text>
-              <Text style={styles.subtitle}>
-                Build high quality mobile apps using React
-              </Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <Image
-              source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
-              style={styles.image}
-            />
-            <View style={styles.text}>
-              <Text style={styles.title}>
-                React Native
-              </Text>
-              <Text style={styles.subtitle}>
-                Build high quality mobile apps using React
-              </Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <Image
-              source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
-              style={styles.image}
-            />
-            <View style={styles.text}>
-              <Text style={styles.title}>
-                React Native
-              </Text>
-              <Text style={styles.subtitle}>
-                Build high quality mobile apps using React
-              </Text>
-            </View>
-          </View>
+          <TextInput style={styles.item} placeholder='Hello~'/>
         </ScrollView>
+        <View style={styles.container}>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={(rowData) =>
+              <TouchableHighlight
+                onPress={() => console.log('listView pressed')}>
+                <Text style={styles.item}>{rowData}</Text>
+              </TouchableHighlight>
+            }
+          />
+        </View>
         <View style={styles.row}>
           <Image
             source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
@@ -137,8 +83,9 @@ const styles = StyleSheet.create({
   item: {
     height: 40,
     lineHeight: 40,
+    justifyContent: 'center',
     marginLeft: 40,
-    marginBottom: 10
+    marginRight: 40
   },
   row: {
     flexDirection: 'row',
