@@ -22,28 +22,49 @@ import {
   LayoutAnimation
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import ScrollableTabView, {DefaultTabBar, ScrollableTabBar} from 'react-native-scrollable-tab-view'
+import ScrollableTabView, {
+  DefaultTabBar,
+  ScrollableTabBar
+} from 'react-native-scrollable-tab-view'
+import TabBar from './app/components/TabBar'
 
 class cherishZhihu extends Component {
   constructor(props: any) {
     super(props)
-    this.state = {
-      bounceValue: new Animated.Value(0),
-      entrance: new Animated.Value(0),
-    }
   }
   render() {
     return (
       <DrawerLayoutAndroid
         renderNavigationView={() => <Text>React Native</Text>}>
         <ScrollableTabView
-          initialPage={0}
-          renderTabBar={() => <ScrollableTabBar />}>
-          <Text tabLabel='Tab #1'>My</Text>
-          <Text tabLabel='Tab #2 word word'>favorite</Text>
-          <Text tabLabel='Tab #3 word word word'>project</Text>
-          <Text tabLabel='Tab #4 word word word word'>favorite</Text>
-          <Text tabLabel='Tab #5'>project</Text>
+          style={{marginTop: 20, }}
+          initialPage={1}
+          renderTabBar={() => <TabBar />}>
+          <ScrollView tabLabel="ios-paper" style={styles.tabView}>
+            <View style={styles.card}>
+              <Text>News</Text>
+            </View>
+          </ScrollView>
+          <ScrollView tabLabel="ios-people" style={styles.tabView}>
+            <View style={styles.card}>
+              <Text>Friends</Text>
+            </View>
+          </ScrollView>
+          <ScrollView tabLabel="ios-chatboxes" style={styles.tabView}>
+            <View style={styles.card}>
+              <Text>Messenger</Text>
+            </View>
+          </ScrollView>
+          <ScrollView tabLabel="ios-notifications" style={styles.tabView}>
+            <View style={styles.card}>
+              <Text>Notifications</Text>
+            </View>
+          </ScrollView>
+          <ScrollView tabLabel="ios-list" style={styles.tabView}>
+            <View style={styles.card}>
+              <Text>Other nav</Text>
+            </View>
+          </ScrollView>
         </ScrollableTabView>
       </DrawerLayoutAndroid>
     )
@@ -51,24 +72,22 @@ class cherishZhihu extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  tabView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 10,
+    backgroundColor: 'rgba(0,0,0,0.01)',
   },
-  box: {
-    backgroundColor: 'red',
-  },
-  button: {
-    marginTop: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: 'black',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
+  card: {
+    borderWidth: 1,
+    backgroundColor: '#fff',
+    borderColor: 'rgba(0,0,0,0.1)',
+    margin: 5,
+    height: 150,
+    padding: 15,
+    shadowColor: '#ccc',
+    shadowOffset: { width: 2, height: 2, },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
   },
 })
 
