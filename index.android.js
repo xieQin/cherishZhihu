@@ -18,6 +18,16 @@ import {
 } from 'react-native';
 
 class cherishZhihu extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { position: 'unknown' }
+  }
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => this.setState({position}),
+      (error) => console.log(error)
+    )
+  }
   render() {
     return (
       <DrawerLayoutAndroid
@@ -25,7 +35,7 @@ class cherishZhihu extends Component {
         <ProgressBarAndroid/>
         <ScrollView>
           <TouchableHighlight onPress={() => console.log('pressed')}>
-            <Text>Proper Touch Handling</Text>
+            <Text>Position: {JSON.stringify(this.state.position)}</Text>
           </TouchableHighlight>
         </ScrollView>
         <View style={styles.row}>
