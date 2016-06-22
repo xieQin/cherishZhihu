@@ -33,10 +33,83 @@ class cherishZhihu extends Component {
       <DrawerLayoutAndroid
         renderNavigationView={() => <Text>React Native</Text>}>
         <ProgressBarAndroid/>
-        <ScrollView>
-          <TouchableHighlight onPress={() => console.log('pressed')}>
-            <Text>Position: {JSON.stringify(this.state.position)}</Text>
+        <ScrollView style={styles.container}>
+          <TouchableHighlight
+            onPress={() => console.log('pressed')}
+            style={styles.item}>
+            <Text style={styles.text}>Position: {JSON.stringify(this.state.position)}</Text>
           </TouchableHighlight>
+          <Text style={styles.item}>Position: {JSON.stringify(this.state.position)}</Text>
+          <View style={styles.row}>
+            <Image
+              source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
+              style={styles.image}
+            />
+            <View style={styles.text}>
+              <Text style={styles.title}>
+                React Native
+              </Text>
+              <Text style={styles.subtitle}>
+                Build high quality mobile apps using React
+              </Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <Image
+              source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
+              style={styles.image}
+            />
+            <View style={styles.text}>
+              <Text style={styles.title}>
+                React Native
+              </Text>
+              <Text style={styles.subtitle}>
+                Build high quality mobile apps using React
+              </Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <Image
+              source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
+              style={styles.image}
+            />
+            <View style={styles.text}>
+              <Text style={styles.title}>
+                React Native
+              </Text>
+              <Text style={styles.subtitle}>
+                Build high quality mobile apps using React
+              </Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <Image
+              source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
+              style={styles.image}
+            />
+            <View style={styles.text}>
+              <Text style={styles.title}>
+                React Native
+              </Text>
+              <Text style={styles.subtitle}>
+                Build high quality mobile apps using React
+              </Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <Image
+              source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
+              style={styles.image}
+            />
+            <View style={styles.text}>
+              <Text style={styles.title}>
+                React Native
+              </Text>
+              <Text style={styles.subtitle}>
+                Build high quality mobile apps using React
+              </Text>
+            </View>
+          </View>
         </ScrollView>
         <View style={styles.row}>
           <Image
@@ -58,6 +131,15 @@ class cherishZhihu extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column'
+  },
+  item: {
+    height: 40,
+    lineHeight: 40,
+    marginLeft: 40,
+    marginBottom: 10
+  },
   row: {
     flexDirection: 'row',
     margin: 40
