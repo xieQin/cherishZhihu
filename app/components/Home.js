@@ -10,7 +10,9 @@ import Second from './Second'
 class Home extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      id: 2
+    }
   }
 
   _press () {
@@ -18,7 +20,10 @@ class Home extends Component {
     if(navigator) {
       navigator.push({
         name:'second',
-        component: Second
+        component: Second,
+        params: {
+          id: this.state.id
+        }
       })
     }
   }

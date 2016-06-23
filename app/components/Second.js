@@ -9,7 +9,15 @@ import {
 class Second extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      id: null
+    }
+  }
+
+  componentDidMount () {
+    this.setState({
+      id: this.props.id
+    })
   }
 
   _press () {
@@ -23,7 +31,7 @@ class Second extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.item} onPress={this._press.bind(this)}>
-          <Text style={styles.text}>Go to Home</Text>
+          <Text style={styles.text}>Go to Home: {this.state.id}</Text>
         </TouchableOpacity>
       </View>
     )
