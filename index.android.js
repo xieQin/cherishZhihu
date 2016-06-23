@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, { Component, Platform } from 'react';
+import React, { Component, Platform } from 'react'
 import {
   AppRegistry,
   StyleSheet,
@@ -40,16 +40,30 @@ class cherishZhihu extends Component {
   render() {
     return (
       <DrawerLayoutAndroid
+        drawerWidth={300}
         renderNavigationView={() =>
-          <View style={styles.text}>
-            <View style={styles.row}>
-              <Text>Home</Text>
+          <View>
+            <View style={styles.top}>
             </View>
-            <View style={styles.row}>
-              <Text>React Native</Text>
-            </View>
-            <View style={styles.row}>
-              <Text>About</Text>
+            <View style={styles.container}>
+              <TouchableOpacity>
+                <View style={styles.row}>
+                  <Text style={styles.text}>Home</Text>
+                  <Icon name='md-arrow-forward' size={25} style={styles.icon}/>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <View style={styles.row}>
+                  <Text style={styles.text}>React Native</Text>
+                  <Icon name='md-arrow-forward' size={25} style={styles.icon}/>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <View style={styles.row}>
+                  <Text style={styles.text}>About</Text>
+                  <Icon name='md-arrow-forward' size={25} style={styles.icon}/>
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
         }>
@@ -71,24 +85,42 @@ class cherishZhihu extends Component {
 }
 
 const styles = StyleSheet.create({
+  top: {
+    height: 150,
+    backgroundColor: '#3385ff'
+  },
   toolbar: {
     height: 56,
     justifyContent: 'center',
     backgroundColor: '#3385ff'
   },
-  text: {
+  container: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'red'
+    flexDirection: 'column',
+    justifyContent: 'center'
   },
   row: {
     flex: 1,
-    flexDirection: 'column',
     height: 50,
-    justifyContent: 'center',
-    backgroundColor: '#3385ff'
+    flexDirection: 'row',
+    // backgroundColor: 'orange',
+    borderBottomColor: '#efefef',
+    borderBottomWidth: 1
+  },
+  text: {
+    flex: 1,
+    fontSize: 16,
+    color: '#3385ff',
+    marginLeft: 10,
+    alignSelf: 'center',
+    // backgroundColor: 'red'
+  },
+  icon: {
+    width: 40,
+    height: 50,
+    marginTop: 12,
+    marginLeft: 20,
+    color: '#ccc',
   }
 })
 
