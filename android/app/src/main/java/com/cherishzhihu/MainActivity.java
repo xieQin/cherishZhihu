@@ -1,6 +1,9 @@
 package com.cherishzhihu;
 
 import com.facebook.react.ReactActivity;
+import com.AirMaps.AirPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import cn.reactnative.modules.jpush.JPushPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
@@ -34,7 +37,10 @@ public class MainActivity extends ReactActivity {
     @Override
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
-            new MainReactPackage()
+            new MainReactPackage(),
+            new AirPackage(),
+            new VectorIconsPackage(),
+            new JPushPackage()
         );
     }
 }

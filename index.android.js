@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { Component, Platform } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -35,7 +35,11 @@ class cherishZhihu extends Component {
   render() {
     return (
       <DrawerLayoutAndroid
-        renderNavigationView={() => <Text>React Native</Text>}>
+        renderNavigationView={() =>
+          <View style={styles.text}>
+          <Text>React Native Demo</Text>
+          </View>
+        }>
         <ScrollableTabView
           style={{marginTop: 20, }}
           initialPage={1}
@@ -87,8 +91,13 @@ const styles = StyleSheet.create({
     shadowColor: '#ccc',
     shadowOffset: { width: 2, height: 2, },
     shadowOpacity: 0.5,
-    shadowRadius: 3,
+    shadowRadius: 3
   },
+  text: {
+    lineHeight: 30,
+    height: 30,
+    textAlign: 'center'
+  }
 })
 
 AppRegistry.registerComponent('cherishZhihu', () => cherishZhihu);
