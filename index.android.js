@@ -92,7 +92,7 @@ class cherishZhihu extends Component {
         <Navigator
           initialRoute={{ name: defaultName, component: defaultComponent }}
           configureScene={(route) => {
-            return Navigator.SceneConfigs.VerticalDownSwipeJump
+            return Navigator.SceneConfigs.FloatFromRight
           }}
           renderScene={(route, navigator) => {
             let Component = route.component
@@ -123,7 +123,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 50,
     flexDirection: 'row',
-    // backgroundColor: 'orange',
     borderBottomColor: '#efefef',
     borderBottomWidth: 1
   },
@@ -133,7 +132,6 @@ const styles = StyleSheet.create({
     color: '#3385ff',
     marginLeft: 10,
     alignSelf: 'center',
-    // backgroundColor: 'red'
   },
   icon: {
     width: 40,

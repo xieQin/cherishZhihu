@@ -3,9 +3,11 @@ import {
   View,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
   StyleSheet
 } from 'react-native'
 import Second from './Second'
+import GiftedListView from 'react-native-gifted-listview'
 
 class Home extends Component {
   constructor(props) {
@@ -13,6 +15,7 @@ class Home extends Component {
     this.state = {
       id: 2
     }
+    this._press = this._press.bind(this)
   }
 
   _press () {
@@ -28,12 +31,47 @@ class Home extends Component {
     }
   }
 
+  _renderRowView (rowData) {
+    return (
+      <TouchableHighlight
+        style={styles.row}
+        underlayColor='#c8c7cc'
+        onPress={this._press}>
+        <Text>{rowData}111</Text>
+      </TouchableHighlight>
+    )
+  }
+
+  _onFetch (page = 1, callback, options) {
+    setTimeout(() => {
+      var rows = ['row '+((page - 1) * 3 + 1), 'row '+((page - 1) * 3 + 2), 'row '+((page - 1) * 3 + 3)]
+      if (page === 3) {
+        callback(rows, {
+          allLoaded: true, // the end of the list is reached
+        })
+      } else {
+        callback(rows);
+      }
+    }, 1000)
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.item} onPress={this._press.bind(this)}>
-          <Text style={styles.text}>Go to Second</Text>
-        </TouchableOpacity>
+        <GiftedListView
+          rowView={this._renderRowView}
+          onFetch={this._onFetch}
+          firstLoader={true}
+          pagination={true}
+          refreshable={true}
+          withSections={false}
+          customStyles={{
+            paginationView: {
+              backgroundColor: '#eee',
+            },
+          }}
+          refreshableTintColor='blue'>
+        </GiftedListView>
       </View>
     )
   }
@@ -42,17 +80,18 @@ class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'orange'
+    backgroundColor: '#FFF',
+  },
+  navBar: {
+    height: 64,
+    backgroundColor: '#CCC'
   },
   item: {
-    flexDirection: 'column',
-    // backgroundColor: 'blue',
+    backgroundColor: '#FFF',
   },
-  text: {
-    height: 30,
-    fontSize: 20,
-    color: 'red',
-    backgroundColor: '#fff'
+  row: {
+    padding: 10,
+    height: 44,
   }
 })
 

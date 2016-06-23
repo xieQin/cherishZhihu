@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "react-native-device-info": "^0.9.3",
+    "react-native-gifted-listview": "0.0.15",
     "react-native-jpush": "^1.0.8",
     "react-native-maps": "^0.4.2",
     "react-native-scrollable-tab-view": "^0.5.0",
