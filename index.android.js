@@ -29,6 +29,9 @@ import ScrollableTabView, {
   ScrollableTabBar
 } from 'react-native-scrollable-tab-view'
 import TabBar from './app/components/TabBar'
+import Home from './app/components/Home'
+
+const DRAWER_REF = 'drawer'
 
 class cherishZhihu extends Component {
   constructor(props: any) {
@@ -37,28 +40,34 @@ class cherishZhihu extends Component {
   _renderNavigationView() {
 
   }
+  onSelect() {
+    this.refs[DRAWER_REF].closeDrawer()
+  }
   render() {
+    let defaultName = 'home'
+    let defaultComponent = Home
     return (
       <DrawerLayoutAndroid
         drawerWidth={300}
+        ref={DRAWER_REF}
         renderNavigationView={() =>
           <View>
             <View style={styles.top}>
             </View>
             <View style={styles.container}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => this.onSelect()}>
                 <View style={styles.row}>
                   <Text style={styles.text}>Home</Text>
                   <Icon name='md-arrow-forward' size={25} style={styles.icon}/>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => this.onSelect()}>
                 <View style={styles.row}>
                   <Text style={styles.text}>React Native</Text>
                   <Icon name='md-arrow-forward' size={25} style={styles.icon}/>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => this.onSelect()}>
                 <View style={styles.row}>
                   <Text style={styles.text}>About</Text>
                   <Icon name='md-arrow-forward' size={25} style={styles.icon}/>
@@ -77,8 +86,19 @@ class cherishZhihu extends Component {
             {title: '夜间模式', show: 'never'},
             {title: '设置选项', show: 'never'},
           ]}
+          onIconClicked={() => this.refs[DRAWER_REF].openDrawer()}
           titleColor="white">
         </Icon.ToolbarAndroid>
+        <Navigator
+          initialRoute={{ name: defaultName, component: defaultComponent }}
+          configureScene={(route) => {
+            return Navigator.SceneConfigs.VerticalDownSwipeJump
+          }}
+          renderScene={(route, navigator) => {
+            let Component = route.component
+            return <Component {...route.params} navigator={navigator}/>
+          }}
+        />
       </DrawerLayoutAndroid>
     )
   }
