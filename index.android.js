@@ -19,7 +19,9 @@ import {
   DrawerLayoutAndroid,
   ProgressBarAndroid,
   TouchableOpacity,
-  LayoutAnimation
+  ToolbarAndroid,
+  LayoutAnimation,
+  Navigator
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import ScrollableTabView, {
@@ -32,71 +34,61 @@ class cherishZhihu extends Component {
   constructor(props: any) {
     super(props)
   }
+  _renderNavigationView() {
+
+  }
   render() {
     return (
       <DrawerLayoutAndroid
         renderNavigationView={() =>
           <View style={styles.text}>
-          <Text>React Native Demo</Text>
+            <View style={styles.row}>
+              <Text>Home</Text>
+            </View>
+            <View style={styles.row}>
+              <Text>React Native</Text>
+            </View>
+            <View style={styles.row}>
+              <Text>About</Text>
+            </View>
           </View>
         }>
-        <ScrollableTabView
-          style={{marginTop: 20, }}
-          initialPage={1}
-          renderTabBar={() => <TabBar />}>
-          <ScrollView tabLabel="ios-paper" style={styles.tabView}>
-            <View style={styles.card}>
-              <Text>News</Text>
-            </View>
-          </ScrollView>
-          <ScrollView tabLabel="ios-people" style={styles.tabView}>
-            <View style={styles.card}>
-              <Text>Friends</Text>
-            </View>
-          </ScrollView>
-          <ScrollView tabLabel="ios-chatboxes" style={styles.tabView}>
-            <View style={styles.card}>
-              <Text>Messenger</Text>
-            </View>
-          </ScrollView>
-          <ScrollView tabLabel="ios-notifications" style={styles.tabView}>
-            <View style={styles.card}>
-              <Text>Notifications</Text>
-            </View>
-          </ScrollView>
-          <ScrollView tabLabel="ios-list" style={styles.tabView}>
-            <View style={styles.card}>
-              <Text>Other nav</Text>
-            </View>
-          </ScrollView>
-        </ScrollableTabView>
+        <Icon.ToolbarAndroid
+          style={styles.toolbar}
+          title='Home'
+          navIconName="md-arrow-back"
+          overflowIconName="md-more"
+          actions={[
+            {title: 'Settings', iconName: 'md-settings', iconSize: 30, show: 'always'},
+            {title: '夜间模式', show: 'never'},
+            {title: '设置选项', show: 'never'},
+          ]}
+          titleColor="white">
+        </Icon.ToolbarAndroid>
       </DrawerLayoutAndroid>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  tabView: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: 'rgba(0,0,0,0.01)',
-  },
-  card: {
-    borderWidth: 1,
-    backgroundColor: '#fff',
-    borderColor: 'rgba(0,0,0,0.1)',
-    margin: 5,
-    height: 150,
-    padding: 15,
-    shadowColor: '#ccc',
-    shadowOffset: { width: 2, height: 2, },
-    shadowOpacity: 0.5,
-    shadowRadius: 3
+  toolbar: {
+    height: 56,
+    justifyContent: 'center',
+    backgroundColor: '#3385ff'
   },
   text: {
-    lineHeight: 30,
-    height: 30,
-    textAlign: 'center'
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'red'
+  },
+  row: {
+    flex: 1,
+    flexDirection: 'column',
+    height: 50,
+    justifyContent: 'center',
+    backgroundColor: '#3385ff'
   }
 })
 
