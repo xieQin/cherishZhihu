@@ -37,11 +37,11 @@ class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'orange'
+    // backgroundColor: 'orange'
   },
   item: {
     flexDirection: 'column',
-    backgroundColor: 'blue',
+    // backgroundColor: 'blue',
   },
   text: {
     height: 30,
