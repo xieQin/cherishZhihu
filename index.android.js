@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, { Component, Platform } from 'react'
+import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
@@ -21,7 +21,10 @@ import {
   TouchableOpacity,
   ToolbarAndroid,
   LayoutAnimation,
-  Navigator
+  Navigator,
+  BackAndroid,
+  Platform,
+  ToastAndroid
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import ScrollableTabView, {
@@ -42,6 +45,31 @@ class cherishZhihu extends Component {
   }
   onSelect() {
     this.refs[DRAWER_REF].closeDrawer()
+  }
+  componentWillMount() {
+    if (Platform.OS === 'android') {
+      BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid.bind(this))
+    }
+  }
+  componentWillUnmount() {
+    if (Platform.OS === 'android') {
+      BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid.bind(this))
+    }
+  }
+  onBackAndroid () {
+    const nav = this.navigator
+    const routers = this.navigator.getCurrentRoutes()
+    if (routers.length > 1) {
+      nav.pop()
+      return true
+    }
+
+    if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+      return false
+    }
+    this.lastBackPressed = Date.now()
+    ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT)
+    return true
   }
   render() {
     let defaultName = 'home'
@@ -90,7 +118,11 @@ class cherishZhihu extends Component {
           titleColor="white">
         </Icon.ToolbarAndroid>
         <Navigator
-          initialRoute={{ name: defaultName, component: defaultComponent }}
+          initialRoute={{
+            name: defaultName,
+            component: defaultComponent
+          }}
+          ref={nav => { this.navigator = nav }}
           configureScene={(route) => {
             return Navigator.SceneConfigs.FloatFromRight
           }}
