@@ -56,7 +56,7 @@ class Home extends Component {
   _onFetch (page = 1, callback, options) {
     setTimeout(() => {
       var rows = ['row '+((page - 1) * 3 + 1), 'row '+((page - 1) * 3 + 2), 'row '+((page - 1) * 3 + 3)]
-      if (page === 3) {
+      if (page === 5) {
         callback(rows, {
           allLoaded: true, // the end of the list is reached
         })
