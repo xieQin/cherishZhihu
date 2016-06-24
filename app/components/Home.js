@@ -15,7 +15,6 @@ class Home extends Component {
     this.state = {
       id: 2
     }
-    this._press = this._press.bind(this)
   }
 
   _press () {
@@ -36,8 +35,9 @@ class Home extends Component {
       <TouchableHighlight
         style={styles.row}
         underlayColor='#c8c7cc'
-        onPress={this._press}>
-        <Text>{rowData}111</Text>
+        onPress={() => this._press()}
+        >
+        <Text>{rowData}</Text>
       </TouchableHighlight>
     )
   }
@@ -58,9 +58,15 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <TouchableHighlight
+          style={styles.row}
+          underlayColor='#c8c7cc'
+          onPress={() => this._press()}>
+          <Text>Go to Second</Text>
+        </TouchableHighlight>
         <GiftedListView
-          rowView={this._renderRowView}
-          onFetch={this._onFetch}
+          rowView={this._renderRowView.bind(this)}
+          onFetch={this._onFetch.bind(this)}
           firstLoader={true}
           pagination={true}
           refreshable={true}
