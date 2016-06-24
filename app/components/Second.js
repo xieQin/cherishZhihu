@@ -3,7 +3,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  Linking
 } from 'react-native'
 
 class Second extends Component {
@@ -26,12 +27,18 @@ class Second extends Component {
       navigator.pop()
     }
   }
+  _callTel () {
+    return Linking.openURL('tel:10086')
+  }
 
   render () {
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.item} onPress={this._press.bind(this)}>
           <Text style={styles.text}>Go to Home: {this.state.id}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.item} onPress={this._callTel.bind(this)}>
+          <Text style={styles.text}>Call 10086</Text>
         </TouchableOpacity>
       </View>
     )

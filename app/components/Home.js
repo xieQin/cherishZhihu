@@ -7,6 +7,7 @@ import {
   StyleSheet
 } from 'react-native'
 import Second from './Second'
+import App from '../app'
 import GiftedListView from 'react-native-gifted-listview'
 
 class Home extends Component {
@@ -26,6 +27,16 @@ class Home extends Component {
         params: {
           id: this.state.id
         }
+      })
+    }
+  }
+
+  _gotodoList () {
+    const { navigator } = this.props
+    if(navigator) {
+      navigator.push({
+        name:'todolist',
+        component: App
       })
     }
   }
@@ -63,6 +74,12 @@ class Home extends Component {
           underlayColor='#c8c7cc'
           onPress={() => this._press()}>
           <Text>Go to Second</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.row}
+          underlayColor='#c8c7cc'
+          onPress={() => this._gotodoList()}>
+          <Text>Go to TodoList</Text>
         </TouchableHighlight>
         <GiftedListView
           rowView={this._renderRowView.bind(this)}
