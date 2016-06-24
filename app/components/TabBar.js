@@ -8,19 +8,19 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const TabBar = React.createClass({
-  tabIcons:[],
+class TabBar extends Component {
+  static tabIcons: [];
 
-  propTypes: {
+  static propTypes: {
     goToPage: PropTypes.func,
     activeTab: PropTypes.number,
     tabs: PropTypes.array,
-  },
+  };
 
   componentDidMount() {
     this.setAnimationValue({ value: this.props.activeTab, })
     this._listener = this.props.scrollValue.addListener(this.setAnimationValue)
-  },
+  }
 
   setAnimationValue({ value, }) {
     this.tabIcons.forEach((icon, i) => {
@@ -31,7 +31,7 @@ const TabBar = React.createClass({
         },
       })
     })
-  },
+  }
 
   //color between rgb(59,89,152) and rgb(204,204,204)
   iconColor(progress) {
@@ -39,7 +39,7 @@ const TabBar = React.createClass({
     const green = 89 + (204 - 89) * progress
     const blue = 152 + (204 - 152) * progress
     return `rgb(${red}, ${green}, ${blue})`
-  },
+  }
 
   render() {
     const tabWidth = this.props.containerWidth / this.props.tabs.length
@@ -63,7 +63,7 @@ const TabBar = React.createClass({
       <Animated.View style={[styles.tabUnderlineStyle, { width: tabWidth }, { left, }, ]} />
     </View>
   }
-})
+}
 
 const styles = StyleSheet.create({
   tab: {
