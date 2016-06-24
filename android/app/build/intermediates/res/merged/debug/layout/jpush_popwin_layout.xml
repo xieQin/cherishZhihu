@@ -12,4 +12,4 @@
             android:layout_height="match_parent"
             android:id="@+id/wvPopwin"/>
 
-</LinearLayout><!-- From: file:/E:/RN-App/cherishZhihu/node_modules/react-native-jpush/android/src/main/res/layout/jpush_popwin_layout.xml --><!-- From: file:/E:/RN-App/cherishZhihu/android/app/build/intermediates/exploded-aar/cherishZhihu/react-native-jpush/unspecified/res/layout/jpush_popwin_layout.xml -->
+</LinearLayout><!-- From: file:/E:/RN-App/react-native-learning-starter/node_modules/react-native-jpush/android/src/main/res/layout/jpush_popwin_layout.xml --><!-- From: file:/E:/RN-App/react-native-learning-starter/android/app/build/intermediates/exploded-aar/cherishZhihu/react-native-jpush/unspecified/res/layout/jpush_popwin_layout.xml -->

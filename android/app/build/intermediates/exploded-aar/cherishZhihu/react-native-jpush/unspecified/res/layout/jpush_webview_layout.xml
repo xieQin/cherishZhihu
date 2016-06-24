@@ -48,4 +48,4 @@
         android:id="@+id/fullWebView"
         android:background="#000000" />
 
-</cn.jpush.android.ui.FullScreenView><!-- From: file:/E:/RN-App/cherishZhihu/node_modules/react-native-jpush/android/src/main/res/layout/jpush_webview_layout.xml -->
+</cn.jpush.android.ui.FullScreenView><!-- From: file:/E:/RN-App/react-native-learning-starter/node_modules/react-native-jpush/android/src/main/res/layout/jpush_webview_layout.xml -->
