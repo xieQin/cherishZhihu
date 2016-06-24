@@ -7,7 +7,8 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  ProgressBarAndroid
 } from 'react-native'
 
 const fullWidth = Dimensions.get('window').width
@@ -44,9 +45,7 @@ export default class List extends Component {
   renderLoadingView() {
     return (
       <View style={styles.container}>
-        <Text>
-          Loading movies...
-        </Text>
+        <ProgressBarAndroid />
       </View>
     );
   }
