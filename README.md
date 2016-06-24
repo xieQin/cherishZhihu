@@ -1,4 +1,4 @@
-# cherishZhihu
+# react-native-learning-starter
 react-native android app, using es2015 jsx
 
 # 1. install
