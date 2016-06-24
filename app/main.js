@@ -29,17 +29,19 @@ import TabBar from './components/TabBar'
 import Home from './components/Home'
 import Second from './components/Second'
 import List from './components/List'
+import Splash from './layouts/Splash'
 
 const DRAWER_REF = 'drawer'
 
 class Main extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      splashd: false
+    }
     this.onSelect = this.onSelect.bind(this)
   }
-  _renderNavigationView() {
 
-  }
   onSelect(routeName) {
     switch (routeName) {
       case 'home':
@@ -68,12 +70,22 @@ class Main extends Component {
     }
     this.refs[DRAWER_REF].closeDrawer()
   }
-  componentWillMount() {
+
+  componentDidMount () {
+    this.timer = setTimeout(
+      () => {
+        this.setState({splashed: true})
+      },
+      2000,
+    )
+  }
+
+  componentWillMount () {
     if (Platform.OS === 'android') {
       BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid.bind(this))
     }
   }
-  componentWillUnmount() {
+  componentWillUnmount () {
     if (Platform.OS === 'android') {
       BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid.bind(this))
     }
@@ -96,6 +108,7 @@ class Main extends Component {
     }
   }
   render() {
+    if (this.state.splashed) {
     let defaultName = 'home'
     let defaultComponent = Home
     return (
@@ -153,6 +166,12 @@ class Main extends Component {
         />
       </DrawerLayoutAndroid>
     )
+    }
+    else {
+      return (
+        <Splash />
+      )
+    }
   }
 }
 

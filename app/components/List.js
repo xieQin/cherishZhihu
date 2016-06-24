@@ -39,7 +39,7 @@ export default class List extends Component {
           loaded: true,
         })
       })
-      .done()
+    .done()
   }
 
   renderLoadingView() {
