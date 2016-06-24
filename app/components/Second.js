@@ -48,17 +48,14 @@ class Second extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'orange'
   },
   item: {
     flexDirection: 'column',
-    // backgroundColor: 'blue',
   },
   text: {
+    margin: 10,
     height: 30,
-    fontSize: 20,
-    color: 'red',
-    backgroundColor: '#fff'
+    fontSize: 16
   }
 })
 

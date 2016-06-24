@@ -27,17 +27,45 @@ import ScrollableTabView, {
 } from 'react-native-scrollable-tab-view'
 import TabBar from './components/TabBar'
 import Home from './components/Home'
+import Second from './components/Second'
+import List from './components/List'
 
 const DRAWER_REF = 'drawer'
 
 class Main extends Component {
   constructor(props) {
     super(props)
+    this.onSelect = this.onSelect.bind(this)
   }
   _renderNavigationView() {
 
   }
-  onSelect() {
+  onSelect(routeName) {
+    switch (routeName) {
+      case 'home':
+        this.navigator.push({
+          name:'home',
+          component: Home
+        })
+        break;
+      case 'second':
+        this.navigator.push({
+          name:'second',
+          component: Second,
+          params: {
+            id: 2
+          }
+        })
+        break;
+      case 'list':
+        this.navigator.push({
+          name:'list',
+          component: List
+        })
+        break;
+      default:
+        break;
+    }
     this.refs[DRAWER_REF].closeDrawer()
   }
   componentWillMount() {
@@ -53,17 +81,19 @@ class Main extends Component {
   onBackAndroid () {
     const nav = this.navigator
     const routers = this.navigator.getCurrentRoutes()
-    if (routers.length > 1) {
+    let length = routers.length
+    if (length > 1 && routers[length - 1].name !== 'home') {
       nav.pop()
       return true
     }
-
-    if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
-      return false
+    if(routers[length - 1].name === 'home') {
+      if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+        return false
+      }
+      this.lastBackPressed = Date.now()
+      ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT)
+      return true
     }
-    this.lastBackPressed = Date.now()
-    ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT)
-    return true
   }
   render() {
     let defaultName = 'home'
@@ -77,22 +107,19 @@ class Main extends Component {
             <View style={styles.top}>
             </View>
             <View style={styles.container}>
-              <TouchableOpacity onPress={() => this.onSelect()}>
+              <TouchableOpacity onPress={() => this.onSelect('home')}>
                 <View style={styles.row}>
                   <Text style={styles.text}>Home</Text>
-                  <Icon name='md-arrow-forward' size={25} style={styles.icon}/>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.onSelect()}>
+              <TouchableOpacity onPress={() => this.onSelect('second')}>
                 <View style={styles.row}>
                   <Text style={styles.text}>React Native</Text>
-                  <Icon name='md-arrow-forward' size={25} style={styles.icon}/>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.onSelect()}>
+              <TouchableOpacity onPress={() => this.onSelect('list')}>
                 <View style={styles.row}>
-                  <Text style={styles.text}>About</Text>
-                  <Icon name='md-arrow-forward' size={25} style={styles.icon}/>
+                  <Text style={styles.text}>Movie List</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -104,7 +131,6 @@ class Main extends Component {
           navIconName="md-arrow-back"
           overflowIconName="md-more"
           actions={[
-            {title: 'Settings', iconName: 'md-settings', iconSize: 30, show: 'always'},
             {title: '夜间模式', show: 'never'},
             {title: '设置选项', show: 'never'},
           ]}

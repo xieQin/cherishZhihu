@@ -6,37 +6,24 @@ import {
   TouchableHighlight,
   StyleSheet
 } from 'react-native'
-import Second from './Second'
-import App from '../app'
+import Third from './Third'
 import GiftedListView from 'react-native-gifted-listview'
 
 class Home extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      id: 2
-    }
+    this.state = {}
   }
 
-  _press () {
+  _press (id) {
     const { navigator } = this.props
     if(navigator) {
       navigator.push({
-        name:'second',
-        component: Second,
+        name:'third',
+        component: Third,
         params: {
-          id: this.state.id
+          id: id
         }
-      })
-    }
-  }
-
-  _gotodoList () {
-    const { navigator } = this.props
-    if(navigator) {
-      navigator.push({
-        name:'todolist',
-        component: App
       })
     }
   }
@@ -46,7 +33,7 @@ class Home extends Component {
       <TouchableHighlight
         style={styles.row}
         underlayColor='#c8c7cc'
-        onPress={() => this._press()}
+        onPress={(rowData) => this._press(rowData)}
         >
         <Text>{rowData}</Text>
       </TouchableHighlight>
@@ -69,18 +56,6 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight
-          style={styles.row}
-          underlayColor='#c8c7cc'
-          onPress={() => this._press()}>
-          <Text>Go to Second</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={styles.row}
-          underlayColor='#c8c7cc'
-          onPress={() => this._gotodoList()}>
-          <Text>Go to TodoList</Text>
-        </TouchableHighlight>
         <GiftedListView
           rowView={this._renderRowView.bind(this)}
           onFetch={this._onFetch.bind(this)}
